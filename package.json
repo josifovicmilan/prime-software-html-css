@@ -1,0 +1,12 @@
+{
+    "name": "prime-sofware-html-css",
+    "version": "1.0.0",
+    "description": "prime-software-html-css",
+    "main": "index.js",
+    "scripts": {},
+    "author": "lancemi",
+    "license": "ISC",
+    "dependencies": {
+        "node-sass": "^6.0.0"
+    }
+}
