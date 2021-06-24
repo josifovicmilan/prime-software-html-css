@@ -1,26 +1,44 @@
+.container{
+    display: grid;
+    grid-template-columns: [full-start] minmax(6rem, 1fr) [container-start] repeat(4, [col-start] 1fr [col-end]) [container-end] minmax(6rem, 1fr) [full-end];
+    grid-template-rows: 80vh repeat(7, min-content);
+}
+
+
 .header{
-   
+    grid-column: full-start/ full-end;
+    
     background-image: url(/img/header.jpg);
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
+    
     
 }
 
 .nav{
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 8rem;
     border-bottom: .05rem solid var(--color-gray-300);
+    
+    @media screen and (min-width: $bp-lg){
+        flex-direction: row;
+        min-width: 66.67%;
+    }
     &__logo{
         margin: 2rem;
+        @media screen and (min-width: $bp-lg){
+            margin: 2rem 0;
+            
+        }
     }
     &__hero{
-        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -29,20 +47,29 @@
     &__heading{
         display: inline;
         text-align: center;
+        @media screen and (min-width: $bp-sm){
+            width: 70%;
+        }
         &-1{
-            color: var(--color-gray-100);
-            font-size: 2.6rem;
+            color: var(--color-gray-50);
+            font-size: 2.7rem;
             font-weight: 700;
             text-transform: uppercase;
             //overflow-wrap: break-word;
             margin: 1rem 1.5rem;
             line-height: 1.2;
             align-self: center;
+            @media screen and (min-width: $bp-lg){
+                font-size: 3.5rem;
+            }
+            @media screen and (min-width: $bp-xl){
+                font-size: 4rem;
+            }
         }
         &-2{
             text-align: center;
-            color: var(--color-gray-300);
-            font-size: 1.1rem;
+            color: var(--color-gray-200);
+            font-size: 1rem;
             font-weight: 200;
             margin: 0rem 1rem;
         }
@@ -54,7 +81,10 @@
         display: flex;
         align-items: center;
         margin-bottom: 1.5rem;
-        
+        @media screen and (min-width: $bp-sm){
+            margin: 0;
+            align-items:flex-end;
+        }
     }
     &__item{
         cursor: pointer;
@@ -69,10 +99,13 @@
         color: var(--color-gray-200);
         text-decoration: none;
         text-transform: uppercase;
-        font-weight: 600;
-        font-size: .9rem;
-        letter-spacing: .7;
-        
+        font-weight: 800;
+        font-family: $font-railway;
+        font-size: .8rem;
+        letter-spacing: .8;
+        @media screen and (min-width: $bp-sm){
+            font-size: .7rem;
+        }
         
         
     }
@@ -96,46 +129,65 @@
     }
 }
 .features{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 3rem;
-    grid-gap: 1rem;
+     grid-column: container-start/container-end;
+    
+    // grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    
+    
+    
+    margin: 4rem 0; 
+    @media screen and (min-width: $bp-sm){
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 2rem;
+        align-items: start;
+    }
+    @media screen and (min-width: $bp-md){    
+        grid-template-columns: repeat(3,1fr);
+    
+    }
+   
 }
 .feature{
-    grid-column: 1 / span 2;
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
     transition: all .3s;
+    cursor: pointer;
     &:hover{
-        border: 1px solid var(--color-gray-200);
+        background-color: var(--color-gray-50);
         box-shadow: var(--shadow-light);
-        transform: translateY(-.4rem);
     }
     &__icon{
-        width: 5rem;
+        height: 5rem;
         margin: 1rem;
     }
     &__heading{
         color: var(--color-gray-800);
         text-transform: uppercase;
         margin: 1rem 0rem;
-        font-size: 1.2rem;
+        font-size: .9rem;
         letter-spacing: .9;
     }
     &__paragraph{
         color: var(--color-gray-400);
         display: inline;
         text-align: center;
-        font-size:1.1rem;
+        font-size:.9rem;
         line-height: 1.1;
     }
 }
 .gallery{
+    grid-column: full-start/ full-end;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(7, 1fr);
+    @media screen  and (min-width: $bp-md){
+        
+        grid-template-rows: repeat(2, 1fr);
+    }
     &__item{
         border:1px solid var(--color-gray-100);
         display: flex;
@@ -163,36 +215,80 @@
         }
        
         &-1{
-            grid-column: 1/3;
+            grid-column: 1/4;
             grid-row: 1/2;
+            @media screen  and (min-width: $bp-sm){
+                grid-column: 1/6;
+                grid-row: 1/3;
+            }
+            @media screen  and (min-width: $bp-md){
+                grid-column: 1/4;
+                grid-row: 1/2;
+            }
         }
         &-2{
-            grid-column: 3/-1;
+            grid-column: 4/-1;
             grid-row: 1/3;
+            @media screen  and (min-width: $bp-sm){
+                grid-column: 6/-1;
+                grid-row: 1/3;
+            }
+            @media screen  and (min-width: $bp-md){
+                grid-column: 4/7;
+                grid-row: 1/2;
+            }
         }
         &-3{
-            grid-column: 1/3;
+            grid-column: 1/4;
             grid-row: 2/3;
+            @media screen  and (min-width: $bp-sm){
+                grid-column: 1/6;
+                grid-row: 3/6;
+            }
+            @media screen  and (min-width: $bp-md){
+                grid-column: 7/10;
+                grid-row: 1/2;
+            }
         }
         &-4{
             grid-column: 1/6;
             grid-row: 3/5;
+            @media screen  and (min-width: $bp-md){
+                grid-column: 10/13;
+                grid-row: 1/2;
+            }
         }
         &-5{
             grid-column: 6/-1;
             grid-row: 3/7;
+            @media screen  and (min-width: $bp-md){
+                grid-column: 1/4;
+                grid-row: 2/3;
+            }
         }
         &-6{
             grid-column: 1/4;
             grid-row:5/7;
+            @media screen  and (min-width: $bp-md){
+                grid-column: 4/7;
+                grid-row: 2/3;
+            }
         }
         &-7{
             grid-column: 4/6;
             grid-row:5/6;
+            @media screen  and (min-width: $bp-md){
+                grid-column: 7/10;
+                grid-row: 2/3;
+            }
         }
         &-8{
             grid-column: 4/6;
             grid-row:6/7;
+            @media screen  and (min-width: $bp-md){
+                grid-column: 10/13;
+                grid-row: 2/3;
+            }
         }
         
     }
@@ -215,6 +311,7 @@
         align-items: center;
         &-1{
             color: var(--color-gray-50);
+            text-transform: uppercase;
         }
         &-2{
             color: var(--color-gray-200);
@@ -228,65 +325,119 @@
     // }
 }
 .users{
+    grid-column: container-start/ container-end;
+    margin: 2rem 0;
     display: flex;
     flex-direction: column;
     // align-items: center;
+    @media screen and(min-width: $bp-sm) {
+        flex-direction: row;
+        grid-column: full-start/ full-end;
+    }
+    @media screen and(min-width: $bp-md) {
+        
+        grid-column: container-start/ container-end;
+    }
 }
 .user{
-
+    margin: 2rem 0;
     display: flex;
     flex-direction: column;
-    margin: 2rem 8rem;
+    align-items: center;
+    @media screen and(min-width: $bp-sm) {
+      align-items: flex-start;
+      margin: 2rem .8rem;
+    }
     &__img{
-        width: 100%;
+        width: 80%;
+        @media screen and(min-width: $bp-sm) {
+           width: 100%;
+          }
     }
     &__name{
+        font-family: $font-railway;
         font-size: 1.8rem;
         font-weight: 300;
         color: var(--color-gray-800);
         margin-top:1.4rem;
         // margin-bottom: .2rem;
+        @media screen and(min-width: $bp-sm) {
+           font-size: 1.5rem;
+          }
+        @media screen and(min-width: $bp-md) {
+            font-size: 1.2rem;
+        }
     }
     &__position{
-        font-size: 1.1rem;
+        font-size: 1rem;
         text-transform: uppercase;
         color: var(--color-red-600);
         font-weight: 100;
         margin-bottom: 1.8rem;
+        @media screen and(min-width: $bp-sm) {
+            font-size: .8rem;
+        }
+        @media screen and(min-width: $bp-md) {
+            font-size: .7rem;
+           }
     }
     &__paragraph{
-        font-size: 1.2rem;
+        font-size: 1rem;
         color: var(--color-gray-400);
         line-height: 1.7;
         margin-bottom: 1.4rem;
+        @media screen and(min-width: $bp-sm) {
+            font-size: .8rem;
+           }
     }
     &__social{
-
+        @media screen and(min-width: $bp-sm) {
+            align-self: flex-start;
+            
+        }
     }
 }
 .carousel{
+    grid-column: full-start/ full-end;
     display: flex;
-    color:var(--color-gray-100);
+    color:var(--color-gray-50);
     position: relative;
     overflow:hidden;
+    width: 100%;
     &__slides{
         width: 100%;
         display: flex;
+        
     }
     &__slide{
         width: 100%;
         flex-shrink: 0;
         display: flex;
         flex-direction: column;
+        z-index: 100;
+        @media screen and(min-width: $bp-sm) {
+            flex-direction: row;
+        }
     }
     &__img{
-        // width: 100%;
+        height: 25rem;
+        width: 100%;
         object-fit: cover;
+        @media screen and(min-width: $bp-sm) {
+            
+            width: 50%;
+        }
     }
     &__banner{
         padding: 3rem 2rem;
         background-color: var(--color-purple-600);
-        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        @media screen and(min-width: $bp-sm) {
+            width: 50%;
+        }
         
     }
     &__paragraph{
@@ -295,12 +446,13 @@
         font-size: .8rem;
         margin-top: 1rem;
         margin-bottom: 2rem;
+        align-self: flex-start;
     }
     &__quote{
         font-style: italic;
-        font-size: 1.8rem;
-        font-weight: 300;
-       
+        font-size: 1.2rem;
+        font-weight: 600;
+       font-family: $font-cardo;
     }
     &__nav{
         position: absolute;
@@ -312,7 +464,10 @@
         left: 50%;
         transform: translateX(-50%);
         z-index: 200;
-        
+        @media screen and(min-width: $bp-sm) {
+            left:75%;
+            bottom: 2rem;
+        }
     }
     &__circle{
         &:first-child{
@@ -328,23 +483,31 @@
         &:hover{
             background-color: var(--color-gray-100);
         }
+        @media screen and(min-width: $bp-sm) {
+            width: .8rem;
+            height: .8rem;
+            margin: .2rem;
+        }
     }
 }
 .cta{
+    grid-column: container-start/ container-end;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top:4rem;
     margin-bottom: 5rem;
+    font-family: $font-railway;
     &__heading{
         color: var(--color-gray-500);
-        font-weight: 200;
+        font-weight: 400;
     }
     &__paragraph{
         color: var(--color-gray-800);
         text-transform: uppercase;
         font-size: .9rem;
+        font-weight: 600;
     }
     &__button{
         appearance: none;
@@ -365,21 +528,58 @@
     }
 }
 .footer{
+    grid-column: full-start/ full-end;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: var(--color-blue-600);
     
     &__about{
-        background-color: var(--color-blue-600);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 1rem 0;
+        
+        @media screen and(min-width: $bp-sm) {
+            flex-direction: row;
+            width: 66.67%;
+            margin: 4rem auto;
+            align-items: flex-start;
+        }
+        
+    }
+    &__paragraph{
+        color: var(--color-gray-300);
+        // margin: 0 2rem;
+        text-align: center;
+    }
+    &__location{
         display: flex;
         flex-direction: column;
         align-items: center;
        
+    //    flex-basis: 0;
+        flex: 1;
     }
-    &__paragraph{
-        color: var(--color-gray-300);
-        margin: 0 2rem;
-        text-align: center;
+    &__social{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // flex-basis: 0;
+        flex: 1;
+    }
+    
+    &__statement{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+         padding: 0 5rem;
+        //flex-basis: 0;
+        flex: 1;
+        @media screen and(min-width: $bp-sm) {
+            padding: 0;
+        }
     }
     &__copyright{
         background-color: var(--color-blue-700);
@@ -399,13 +599,6 @@
             color: var(--color-gray-50);
         }
     }
-
-    &__location{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 1rem;
-    }
     &__heading{
         color: var(--color-gray-100);
         text-transform: uppercase;
@@ -413,19 +606,9 @@
     }
     &__street, &__city{
         color: var(--color-gray-300);
+        font-size: .8rem;
     }
     
-    &__statement{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 1rem;
-    }
-    &__social{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
     
 }
 .fab{
@@ -437,6 +620,10 @@
     border: 1px solid var(--color-gray-200);
     cursor: pointer;
     transition: all .3s;
+    @media screen and(min-width: $bp-md) {
+        width: 2.7rem;
+        height: 2.7rem;
+       }
 }
     .fa-facebook-f:hover{
         color: #3b5998;
